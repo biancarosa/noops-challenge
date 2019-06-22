@@ -17,9 +17,10 @@ type Hex struct {
 
 func GetHexColor() Hex {
 	//Get hexcolor
-	response, _ := http.Get("https://api.noopschallenge.com/hexbot?count=20")
+	resp, _ := http.Get("https://api.noopschallenge.com/hexbot?count=20")
 	var hex Hex
-	buf, _ := ioutil.ReadAll(response.Body)
+	buf, _ := ioutil.ReadAll(resp.Body)
+	defer resp.Body.Close()
 	json.Unmarshal(buf, &hex)
 	fmt.Printf("%#v\n", hex)
 	return hex
