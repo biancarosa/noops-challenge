@@ -7,4 +7,4 @@ Roamed around for a while and decided to go for color strips on a random image g
 
 ![](images/stripped.png)
 
-Photo by <a href="https://unsplash.com/@jontyson?utm_source=noops_challenge&utm_medium=referral">Annie Spratt</a> on <a href="https://unsplash.com/?utm_source=noops_challenge&utm_medium=referral">Unsplash</a>, modified with a color given by [Hexbot](https://noopschallenge.com/challenges/hexbot).
+Photo by [Jon Tyson](https://unsplash.com/@jontyson?utm_source=noops_challenge&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=noops_challenge&utm_medium=referral) modified with a color given by [Hexbot](https://noopschallenge.com/challenges/hexbot).
