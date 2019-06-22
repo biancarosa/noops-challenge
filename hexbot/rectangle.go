@@ -40,7 +40,7 @@ func ParseHexColor(s string) (c color.RGBA, err error) {
 
 func main() {
 	//Get hexcolor
-	response, _ := http.Get("https://api.noopschallenge.com/hexbot")
+	response, _ := http.Get("https://api.noopschallenge.com/hexbot?count=20")
 	var hex Hex
 	buf, _ := ioutil.ReadAll(response.Body)
 	json.Unmarshal(buf, &hex)
@@ -50,9 +50,21 @@ func main() {
 	width := 600
 	height := 600
 	img := image.NewRGBA(image.Rect(0, 0, width, height))
-	for _, color := range hex.Colors {
+
+	blockW := width / len(hex.Colors)
+	blockH := height / len(hex.Colors)
+	rgba, _ := ParseHexColor(hex.Colors[len(hex.Colors)/2].Value)
+	draw.Draw(img, img.Bounds(), &image.Uniform{rgba}, image.ZP, draw.Src)
+
+	for i, color := range hex.Colors {
 		rgba, _ := ParseHexColor(color.Value)
-		draw.Draw(img, img.Bounds(), &image.Uniform{rgba}, image.ZP, draw.Src)
+		x0 := blockW * i
+		y0 := blockH * i
+		x1 := blockW * (i + 1)
+		y1 := blockH * (i + 1)
+		fmt.Println(i, " - ", x0, y0, x1, y1)
+		mask := image.Rect(x0, y0, x1, y1)
+		draw.Draw(img, mask, &image.Uniform{rgba}, image.ZP, draw.Src)
 	}
 
 	// Save to out.png
